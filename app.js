@@ -10,6 +10,7 @@ class YOLODetector {
         ];
         
         this.colors = this.generateColors(this.classNames.length);
+        this.confidenceThreshold = 0.85; // Default 85%
         this.initializeElements();
         this.loadModel();
     }
@@ -23,6 +24,16 @@ class YOLODetector {
         this.status = document.getElementById('status');
         this.fpsDisplay = document.getElementById('fps');
         this.detectionsDisplay = document.getElementById('detections');
+
+        this.confidenceSlider = document.getElementById('confidenceSlider');
+        this.confidenceValue = document.getElementById('confidenceValue');
+    
+        if (this.confidenceSlider) {
+            this.confidenceSlider.addEventListener('input', (e) => {
+                this.confidenceThreshold = e.target.value / 100;
+                this.confidenceValue.textContent = `${e.target.value}%`;
+            });
+        }
         
         this.startBtn.addEventListener('click', () => this.startCamera());
         this.stopBtn.addEventListener('click', () => this.stopCamera());
@@ -199,7 +210,7 @@ class YOLODetector {
         }
         
         // Filter by confidence threshold
-        if (maxScore > 0.5) {
+        if (maxScore > this.confidenceThreshold) {
             // Convert to corner coordinates and scale to canvas size
             const scaleX = this.canvas.width / 640;
             const scaleY = this.canvas.height / 640;
@@ -256,4 +267,5 @@ class YOLODetector {
 document.addEventListener('DOMContentLoaded', () => {
     new YOLODetector();
 });
+
 
