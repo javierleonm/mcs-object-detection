@@ -1,1 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #ffffff;
+    color: #333333;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 20px;
+}
+
+h1 {
+    color: #1a1a1a;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.team-info {
+    color: #666666;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.video-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+#video {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: 4px;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+button {
+    background: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #005999;
+}
+
+button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+.confidence-control {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.confidence-control label {
+    color: #333;
+    font-size: 14px;
+}
+
+#confidenceSlider {
+    width: 200px;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+#confidenceSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #007acc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#confidenceSlider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #007acc;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.info div {
+    background: #f8f8f8;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid #e5e5e5;
+}
+
+#status { color: #007acc; }
+#fps { color: #28a745; }
+#detections { color: #fd7e14; }
+
+@media (max-width: 768px) {
+    body { padding: 15px; }
+    h1 { font-size: 1.5rem; }
+    .team-info { font-size: 0.8rem; }
+    
+    .info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .info div {
+        width: 100%;
+        max-width: 250px;
+    }
+    
+    #confidenceSlider {
+        width: 180px;
+    }
+}
