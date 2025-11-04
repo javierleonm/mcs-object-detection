@@ -178,7 +178,7 @@ class YOLODetector {
    processDetections(output) {
     const detections = [];
     const numDetections = 8400; // Your model outputs 8400 detections
-    const numClasses = 8; // Your model has 8 classes (not 80 like COCO)
+    const numClasses = 4; // Your model has 4 classes (not 80 like COCO)
     
     for (let i = 0; i < numDetections; i++) {
         // YOLOv8 output format: [x, y, w, h, class1_conf, class2_conf, ...]
@@ -216,7 +216,7 @@ class YOLODetector {
                 height: boxH,
                 confidence: maxScore,
                 classId: classId,
-                className: `Class ${classId}` // Update with your actual class names
+                className: this.classNames[classId] || `Class ${classId}` // Update with your actual class names
             });
         }
     }
@@ -256,3 +256,4 @@ class YOLODetector {
 document.addEventListener('DOMContentLoaded', () => {
     new YOLODetector();
 });
+
